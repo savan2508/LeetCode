@@ -21,14 +21,20 @@
 # 0 <= strs[i].length <= 200
 # strs[i] consists of only lowercase English letters.
 
-class Solution:
-    def longestCommonPrefix(self, strs: List[str]) -> str:
 
-        short = min(strs, key=len) 
-        for item in strs: 
-            while len(short) > 0:
-                if item.startswith(short): 
-                    break
-                else:
-                    short = short[:-1] 
-        return short
+def longestCommonPrefix(strs):
+
+    short = min(strs, key=len) 
+    for item in strs: 
+        while len(short) > 0:
+            if item.startswith(short): 
+                break
+            else:
+                short = short[:-1] 
+    return short
+
+strs1 = ["flower","flow","flight"]
+strs2 = ["dog","racecar","car"]
+
+print(f"Solution for strs1: {longestCommonPrefix(strs=strs1)}")
+print(f"Solution for strs2: {longestCommonPrefix(strs=strs2)}")
