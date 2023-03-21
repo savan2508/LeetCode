@@ -1,4 +1,4 @@
-# You are given a large integer represented as an integer array digits, where each digits[i] is the 
+# You are given a large integer represented as an integer array digits, where each digits[i] is the  
 # ith digit of the integer. The digits are ordered from most significant to least significant 
 # in left-to-right order. The large integer does not contain any leading 0's.
 
@@ -36,27 +36,20 @@
 # digits does not contain any leading 0's.
 
 def plusOne(digits):
-    if len(digits) == 1:
-        digits[0] += 1
-        if digits[0] == 10:
+    digit = 1
+    while digit <= len(digits):
+        output = digits[digit*-1] + 1
+        if output != 10:
+            digits[digit*-1] = output
+            return digits
+        elif digit == len(digits) and output == 10:
             digits.insert(0,1)
             digits[1] = 0
-        return digits
-    else:
-        digit = 1
-        while digit <= len(digits):
-            output = digits[digit*-1] + 1
-            if output != 10:
-                digits[digit*-1] = output
-                return digits
-            elif digit == len(digits) and output == 10:
-                digits.insert(0,1)
-                digits[1] = 0
-                return digits
-            else:
-                digits[digit*-1] = 0
-            digit += 1
-        return digits
+            return digits
+        else:
+            digits[digit*-1] = 0
+        digit += 1
+    return digits
 
-digits = [9,9]
+digits = [9]
 print(plusOne(digits))
