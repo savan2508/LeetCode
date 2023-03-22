@@ -29,7 +29,7 @@
 
 def lengthOfLongestSubstring(s: str) -> int:
     output = []
-    output_2 = []
+    string_list = []
     i = 0
     while i < len(s):
         if s[i] not in output:
@@ -43,13 +43,10 @@ def lengthOfLongestSubstring(s: str) -> int:
             else:
                 del output[:j]
                 # i -= 1
-        if len(output_2) < len(output):
-            output_2 = output
-  
-    if len(output_2) < len(output):
-        output_2 = output
-    
-    return len(output_2)
+        if len(string_list) < len(output):
+            string_list = output[:]
+     
+    return len(string_list)
 
 s = "abcabcbb"
 print(lengthOfLongestSubstring(s))
