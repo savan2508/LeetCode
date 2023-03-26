@@ -12,8 +12,8 @@
 
 # Roman numerals are usually written largest to smallest from left to right. However, the numeral for four is not IIII. Instead, the number four is written as IV. Because the one is before the five we subtract it making four. The same principle applies to the number nine, which is written as IX. There are six instances where subtraction is used:
 
-# I can be placed before V (5) and X (10) to make 4 and 9. 
-# X can be placed before L (50) and C (100) to make 40 and 90. 
+# I can be placed before V (5) and X (10) to make 4 and 9.
+# X can be placed before L (50) and C (100) to make 40 and 90.
 # C can be placed before D (500) and M (1000) to make 400 and 900.
 # Given a roman numeral, convert it to an integer.
 
@@ -21,38 +21,41 @@ class Solution:
     def romanToInt(self, s: str) -> int:
         self.s = s
         self.str = str
-        roman_value = {'I':1,'V':5,'X':10,'L':50,'C':100,'D':500,'M':1000}
+        roman_value = {'I': 1, 'V': 5, 'X': 10,
+                       'L': 50, 'C': 100, 'D': 500, 'M': 1000}
         value = 0
         for i in range(len(self.s)):
-            
+
             if i < len(self.s)-1:
-                if self.s[i] == 'I' and (self.s[i+1] in ['X','V']):
+                if self.s[i] == 'I' and (self.s[i+1] in ['X', 'V']):
                     value -= roman_value['I']
-                
-                elif self.s[i] == 'X' and (self.s[i+1] in ['L','C']):
+
+                elif self.s[i] == 'X' and (self.s[i+1] in ['L', 'C']):
                     value -= roman_value['X']
-                
-                elif self.s[i] == 'C' and (self.s[i+1] in ['D','M']):
+
+                elif self.s[i] == 'C' and (self.s[i+1] in ['D', 'M']):
                     value -= roman_value['C']
                 else:
                     value += roman_value[self.s[i]]
         value += roman_value[self.s[-1]]
-        return value 
-    
+        return value
+
 # Solution 2:
+
 
 class Solution:
     def romanToInt(self, s: str) -> int:
         self.s = s
         self.str = str
-        roman_value = {'I':1,'V':5,'X':10,'L':50,'C':100,'D':500,'M':1000}
+        roman_value = {'I': 1, 'V': 5, 'X': 10,
+                       'L': 50, 'C': 100, 'D': 500, 'M': 1000}
         value = 0
         for i in range(len(self.s)):
-            
+
             if i < len(self.s)-1:
                 if roman_value[self.s[i]] < roman_value[self.s[i+1]]:
                     value -= roman_value[self.s[i]]
                 else:
                     value += roman_value[self.s[i]]
         value += roman_value[self.s[-1]]
-        return value 
+        return value
