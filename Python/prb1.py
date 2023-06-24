@@ -30,11 +30,23 @@ Constraints:
 Only one valid answer exists.
 '''
 
+# Brute force method: 
+# def twoSum(nums, target):
+#     rem_sum = {}
+#     for i in range(0, len(nums)-1):
+#         for j in range(i+1, len(nums)):
+#             if nums[i] + nums[j] == target:
+#                 return [i, j]
+
+# Time complexity save method: 
 def twoSum(nums, target):
-    for i in range(0, len(nums)-1):
-        for j in range(i+1, len(nums)):
-            if nums[i] + nums[j] == target:
-                return [i, j]
+    rem_sum_dic = {}
+    for i in range(0, len(nums)):
+        if nums[i] in rem_sum_dic.keys():
+            return [rem_sum_dic[nums[i]], i]
+        else:
+            rem_target = target - nums[i]
+            rem_sum_dic[rem_target] = i
 
 nums = [2,7,11,15]
 target = 9
