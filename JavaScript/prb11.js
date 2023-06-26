@@ -30,18 +30,36 @@ n == height.length
 0 <= height[i] <= 104
 */
 
+// var maxArea = function (height) {
+//     let maxArea = 0;
+//     for (let i = 0; i < height.length; i++) {
+//         for (let j = i+1; j < height.length; j++) {
+//             const area = Math.min(height[i], height[j]) * (j - i);
+//             if (area > maxArea) {
+//                 maxArea = area;
+//             }
+//         }
+//     };
+//     return maxArea;
+// }
+
 var maxArea = function (height) {
-    let maxArea = 0;
-    for (let i = 0; i < height.length; i++) {
-        for (let j = i+1; j < height.length; j++) {
-            const area = Math.min(height[i], height[j]) * (j - i);
-            if (area > maxArea) {
-                maxArea = area;
-            }
+    let left = 0, right = height.length -1 , maxArea = 0;
+    while (left < right) {
+        const area = Math.min(height[left], height[right]) * (right - left);
+        if (area > maxArea) {
+            maxArea = area
         }
-    };
+        if (height[left] <= height[right]) {
+            left++;
+        }
+        else {
+            right--;
+        }
+    }
     return maxArea;
 }
 
-const height = [1, 1];
+// const height = [1, 1];
+const height = [1,8,6,2,5,4,8,3,7];
 console.log(maxArea(height));

@@ -30,15 +30,32 @@ n == height.length
 0 <= height[i] <= 104
 """
 
-def maxArea(height):
-    max_area = 0
-    area = 0
-    for i in range(0, len(height)-1):
-        for j in range(i+1, len(height)):
-            area = min(height[i], height[j]) * (j - i)
-            if area > max_area:
-                max_area = area
-    return max_area
+# def maxArea(height):
+#     max_area = 0
+#     area = 0
+#     for i in range(0, len(height)-1):
+#         for j in range(i+1, len(height)):
+#             area = min(height[i], height[j]) * (j - i)
+#             if area > max_area:
+#                 max_area = area
+#     return max_area
 
-height = [1,1]
+def maxArea(height):
+    maxArea = 0
+    area = 0
+    left = 0
+    right = len(height) - 1
+    while left < right:
+        if height[left] <= height[right]:
+            area = height[left] * (right - left)
+            left += 1
+        else:
+            area = height[right] * (right - left)
+            right -= 1
+        if area > maxArea:
+            maxArea = area
+    return maxArea
+
+# height = [4, 8, 1, 2, 3, 9]
+height = [1,8,6,2,5,4,8,3,7]
 print(maxArea(height))
