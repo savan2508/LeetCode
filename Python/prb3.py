@@ -48,5 +48,27 @@ def lengthOfLongestSubstring(s: str) -> int:
      
     return len(string_list)
 
-s = "abcabcbb"
+def lengthOfLongestSubstring2(s):
+    if len(s) <= 1:
+        return len(s)
+    seen_dict = {}
+    left = 0
+    longest = 0
+    for index, right in enumerate(s):
+        if right not in seen_dict.keys():
+            seen_dict[right] = index
+        else:
+            if seen_dict[right] >= left:
+                left = seen_dict[right] + 1
+            seen_dict[right] = index
+        longest = max(longest, index - left + 1)
+    return longest
+
+
+# s = "abcabcbb"
+# s = "pwwkew"
+# s = "bbbbb"
+# s = "au"
+s = "abba"
 print(lengthOfLongestSubstring(s))
+print(lengthOfLongestSubstring2(s))
