@@ -51,12 +51,23 @@ def isPalindromeTwoPointerFromOut(s):
                 return False
     return True
 
+def isPalindrome(s: str) -> bool:
+    temp = ""
+    for char in s.lower():
+        if char.isalpha() or char.isdigit():
+            temp += char
+    if temp != temp[::-1]:
+        return False
+    else:
+        return True
 
-# s = "A man, a plan, a canal: Panama"
+
+s = "A man, a plan, a canal: Panama"
 # s = "aba"
 # s = "aabaa"
-s = "race a car"
+# s = "race a car"
 # s = " "
 # s =''
 
 print(isPalindromeTwoPointerFromOut(s))
+print(isPalindrome(s))
